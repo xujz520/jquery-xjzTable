@@ -1,0 +1,141 @@
+* {
+    margin:0;
+    padding:0;
+}
+
+.syntaxhighlighter {
+    border: 1px solid green;
+    overflow-y: hidden!important;
+}
+
+.syntaxhighlighter .line.alt1 {
+    background-color: rgb(248, 248, 248)!important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin:10px 0;
+}
+
+body {
+    background-color:#ddd;
+    font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
+
+ul {
+    padding-left:40px;
+}
+
+.text-center {
+    text-align:center;
+}
+
+.padding-left {
+    padding-left:40px;
+}
+
+.text-red {
+    color:red;
+}
+
+.img {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+@keyframes xjzAnimation
+{
+	0%   {left:0px;}
+	20%   {transform: rotate(20deg);}
+	80%   {transform: rotate(0deg);}
+	100% {left:800px;}
+}
+
+.xjz {
+    padding: 5px;
+    border: 1px solid green;
+    position:relative;
+    animation:xjzAnimation 2s 2 alternate;
+    animation-delay: 2s;
+}
+
+.Table {
+    border-collapse:collapse;
+    border:#6f6f6f 1px solid;
+}
+.Table td,.Table th {
+    border:#6f6f6f 1px solid;
+    padding:3px;
+}
+.Table>tbody>tr:nth-of-type(even) {
+    background-color: #f8f8f8;
+}
+.Table>tbody>tr:first-child {
+    background-color: #c7ddf4;
+    font-weight: bold;
+}
+
+.container {
+    margin:0px auto;
+    padding:10px;
+    background-color:#FFF;
+    box-shadow: 0 0 20px #000;
+}
+
+.border {
+    border: 1px solid #ddd;
+    padding: 0 10px;
+}
+
+/*这里重写了bootstrap的表格响应式类*/
+@media screen and (max-width: 1920px) {
+    .table-responsive {
+        width: 100%;
+        margin-bottom: 15px;
+        overflow-y: hidden;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        border: 1px solid #ddd;
+    }
+
+    .table-responsive > .table {
+        margin-bottom: 0;
+    }
+
+    .table-responsive > .table > thead > tr > th,
+    .table-responsive > .table > tbody > tr > th,
+    .table-responsive > .table > tfoot > tr > th,
+    .table-responsive > .table > thead > tr > td,
+    .table-responsive > .table > tbody > tr > td,
+    .table-responsive > .table > tfoot > tr > td {
+        white-space: nowrap;
+    }
+
+    .table-responsive > .table-bordered {
+        border: 0;
+    }
+
+    .table-responsive > .table-bordered > thead > tr > th:first-child,
+    .table-responsive > .table-bordered > tbody > tr > th:first-child,
+    .table-responsive > .table-bordered > tfoot > tr > th:first-child,
+    .table-responsive > .table-bordered > thead > tr > td:first-child,
+    .table-responsive > .table-bordered > tbody > tr > td:first-child,
+    .table-responsive > .table-bordered > tfoot > tr > td:first-child {
+        border-left: 0;
+    }
+
+    .table-responsive > .table-bordered > thead > tr > th:last-child,
+    .table-responsive > .table-bordered > tbody > tr > th:last-child,
+    .table-responsive > .table-bordered > tfoot > tr > th:last-child,
+    .table-responsive > .table-bordered > thead > tr > td:last-child,
+    .table-responsive > .table-bordered > tbody > tr > td:last-child,
+    .table-responsive > .table-bordered > tfoot > tr > td:last-child {
+        border-right: 0;
+    }
+
+    .table-responsive > .table-bordered > tbody > tr:last-child > th,
+    .table-responsive > .table-bordered > tfoot > tr:last-child > th,
+    .table-responsive > .table-bordered > tbody > tr:last-child > td,
+    .table-responsive > .table-bordered > tfoot > tr:last-child > td {
+        border-bottom: 0;
+    }
+}
