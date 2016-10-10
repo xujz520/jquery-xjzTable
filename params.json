@@ -1,0 +1,6 @@
+{
+  "name": "Jquery-xjztable",
+  "tagline": "一个功能强大且简单易用的表格插件.",
+  "body": "**特点：**\r\n* 支持分页、分页信息、分页大小\r\n* 支持ajax数据源、本地数据源\r\n* 支持排序\r\n* 单元格鼠标悬停浮动tooltip\r\n* 自定义单元格内容渲染\r\n* 精准控制dom生成\r\n* 回调函数\r\n* 强大的表格刷新方法\r\n* bootstrap样式\r\n* 支持自定义css样式类\r\n* 配置简单\r\n* 兼容IE8\r\n* 多语言支持\r\n* ...",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
