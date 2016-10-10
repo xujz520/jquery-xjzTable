@@ -22,7 +22,7 @@
 </head>
 <body>
     <div class="container">
-        <h3 class="text-center">jquery-xjzTable <span style="font-weight:normal; font-size:smaller;">v0.1.2</span></h3>
+        <h3 class="text-center">jquery-xjzTable <span style="font-weight:normal; font-size:smaller;">v0.1.4</span></h3>
 
         <h4>一、简介</h4>
         <div class="padding-left">
@@ -173,7 +173,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td rowspan="8" style="word-break: break-all;">
+                        <td rowspan="10" style="word-break: break-all;">
                             columns:[{}]
                         </td>
                         <td>
@@ -232,22 +232,25 @@
                     </tr>
                     <tr>
                         <td>
-                            width
+                            sort
                         </td>
                         <td>
-                            String<br />Number
+                            String<br />
+                            Boolean
                         </td>
-                        <td colspan="1" rowspan="1" valign="null"></td>
-                        <td>
-                            列宽， 作用于th
+                        <td colspan="1" rowspan="1" valign="null" style="word-break: break-all;">
+                            true<br />
                         </td>
                         <td>
-                            <pre class="brush:js;quick-code:false;gutter:false;">                                
-                                width: 30 //相当于30px
-                                width: &#39;30&#39; //相当于30px
-                                width: &#39;30px&#39;
-                                width: &#39;30%&#39; //百分比
-                            </pre>
+                            排序控制<br />
+                            如果要对该列进行排序,<br />
+                            则必须配置field属性.
+                        </td>
+                        <td>
+                            <pre class="brush:js;quick-code:false;gutter:false;">                                sort: true //在该列等待排序(默认)
+                                sort: &#39;desc&#39; //倒序
+                                sort: &#39;asc&#39; //升序
+                                sort: false //该列禁用排序</pre>
                         </td>
                     </tr>
                     <tr>
@@ -268,23 +271,44 @@
                     </tr>
                     <tr>
                         <td>
-                            sort
+                            width
                         </td>
                         <td>
-                            String<br />
-                            Boolean
+                            String<br />Number
                         </td>
-                        <td colspan="1" rowspan="1" valign="null" style="word-break: break-all;">
-                            true<br />
+                        <td colspan="1" rowspan="1" valign="null"></td>
+                        <td>
+                            列宽， 作用于th
                         </td>
                         <td>
-                            排序控制
+                            <pre class="brush:js;quick-code:false;gutter:false;">                                
+                                width: 30 //相当于30px
+                                width: &#39;30&#39; //相当于30px
+                                width: &#39;30px&#39;
+                                width: &#39;30%&#39; //百分比
+                            </pre>
                         </td>
+                    </tr>
+                    <tr>
+                        <td>textAlign</td>
+                        <td>String</td>
+                        <td colspan="1" valign="null">'left'</td>
+                        <td>该列内容的水平对齐方式</td>
                         <td>
-                            <pre class="brush:js;quick-code:false;gutter:false;">                                sort: true //在该列等待排序(默认)
-                                sort: &#39;desc&#39; //倒序
-                                sort: &#39;asc&#39; //升序
-                                sort: false //该列禁用排序</pre>
+                            <p>textAlign: 'center'</p>
+                            <p>textAlign: 'left'</p>
+                            <p>textAlign: 'right'</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>verticalAlign</td>
+                        <td>String</td>
+                        <td colspan="1" valign="null">'middle'</td>
+                        <td>该列内容垂直对齐方式</td>
+                        <td>
+                            <p>verticalAlign: 'middle'</p>
+                            <p>verticalAlign: 'top'</p>
+                            <p>verticalAlign: 'bottom'</p>
                         </td>
                     </tr>
                     <tr>
@@ -1123,6 +1147,7 @@
                     totalSrc: 'total',
                     masklayer: true
                 },
+                defColumns: {},
                 columns: [],
                 paging: {
                     startPage: 1,

@@ -4,10 +4,12 @@
         //ajax: {
         //    url:'assets/test.json'
         //},
+        defColumns: {
+            textAlign: 'center'
+        },
         columns: [
             {
                 title: '<input type="checkbox">',
-                sort: false,
                 width: '20',
                 render: function () {
                     return $('<input type="checkbox">');
@@ -22,7 +24,7 @@
             {
                 title: '年龄',
                 field: 'age',
-                sort: 'asc',
+                sort: 'asc'
             },
             {
                 title: '学分',
@@ -32,7 +34,8 @@
             {
                 title: '电子邮箱',
                 field: 'email',
-                defaultContent: $("#add")
+                defaultContent: $("#add"),
+                textAlign: 'left'
             }
         ],
         defaultSize: 10
