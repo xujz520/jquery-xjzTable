@@ -1,0 +1,1697 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <title>jquery-xjzTable</title>
+    
+    <link href="../dist/jquery-xjzTable-all.min.css" rel="stylesheet" />
+    <script src="assets/jquery-1.9.1.min.js"></script>
+    <script src="../dist/jquery-xjzTable.min.js"></script>
+
+    <link href="assets/syntaxhighlighter_3.0.83/styles/shCore.css" rel="stylesheet" />
+    <link href="assets/syntaxhighlighter_3.0.83/styles/shCoreDefault.css" rel="stylesheet" />
+    <script src="assets/syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
+    <script src="assets/syntaxhighlighter_3.0.83/scripts/shAutoloader.js"></script>
+    <script src="assets/syntaxhighlighter_3.0.83/scripts/auto.js"></script>
+
+    <link href="assets/doc.css" rel="stylesheet" />
+    <script src="assets/tableData.js"></script>
+    <script src="assets/doc.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h3 class="text-center">jquery-xjzTable <span style="font-weight:normal; font-size:smaller;">v0.1.4</span></h3>
+
+        <h4>一、简介</h4>
+        <div class="padding-left">
+            <p>一个功能强大且简单易用的表格插件.</p>
+            <p>特点：</p>
+            <ul>
+                <li>支持分页、分页信息、分页大小</li>
+                <li>支持ajax数据源、本地数据源</li>
+                <li>支持排序</li>
+                <li>单元格鼠标悬停浮动tooltip</li>
+                <li>自定义单元格内容渲染</li>
+                <li>精准控制dom生成</li>
+                <li>回调函数</li>
+                <li>强大的表格刷新方法</li>
+                <li>bootstrap样式</li>
+                <li>支持自定义css样式类</li>
+                <li>配置简单</li>
+                <li>兼容IE8</li>
+                <li>多语言支持</li>
+                <li>...</li>
+            </ul>
+
+            <br />
+            <p>下载： <a href="https://xujunzhou.github.io/jquery-xjzTable/" target="_blank">GitHub</a></p>
+
+            <br />
+            <p>作者： </p>
+            <div class="padding-left">
+                <p>徐俊洲</p>
+                <p>QQ: 765550360(清晨的阳光)</p>
+                <p>2016-10-01</p>
+                <div>
+                    <img src="assets/img/xjz.png" class="xjz" />
+                    <p style="color:green;text-shadow: 0px 0px 1px;">如果您觉得好用, 并且想获取源码, 就请支付宝打赏我吧. 之后765550360@qq.com通知我, 我会第一时间发送源码!</p>
+                </div>
+            </div>
+        </div>
+        
+        <br />
+        <h4>二、基本使用</h4>
+        <div class="padding-left">
+            <p>1. 加载文件</p>
+            <pre class="brush:html;quick-code:false;">
+                <link href="../dist/jquery-xjzTable-all.min.css" rel="stylesheet" />
+                <script src="assets/jquery-1.9.1.min.js"></script>
+                <script src="../dist/jquery-xjzTable.min.js"></script>
+            </pre>
+
+            <p>2. 增加table标签</p>
+            <pre class="brush:html;quick-code:false;">
+                <table id="test1" class="table table-striped table-bordered table-hover table-condensed"></table>   <!--请参考页码底部的css类说明-->
+            </pre>
+
+            <p>3. 初始化</p>
+            <pre class="brush:js;quick-code:false;">
+            $(function () {
+                var config = {
+                    ajax: {
+                        url: 'js/test.json'
+                    },
+                    columns: [
+                        { title: '学号', field: 'id' },
+                        { title: '姓名', field: 'name' },
+                        { title: '年龄', field: 'age' },
+                        { title: '学分', field: 'grade' },
+                        { title: '电子邮箱', field: 'email' }
+                    ]
+                };
+                $("#test1").xjzTable(config);
+            });
+            </pre>
+
+            <p>请求url：http://localhost:8088/js/test.json?<span class="text-red">paging=1</span>&<span class="text-red">start=0</span>&<span class="text-red">limit=25</span>&sort=[ ]&_=1475658546102</p>
+
+            <p>服务器返回json：</p>
+            <pre class="brush:js;quick-code:false;">
+            {
+                "total": 300,
+                "rows": [
+                    {
+                        "id": 1,
+                        "name": "Leo Hanna",
+                        "age": 19,
+                        "grade": 35,
+                        "email": "melanie@carlton.ao"
+                    },
+                    {
+                        "id": 2,
+                        "name": "Hannah Hoyle",
+                        "age": 20,
+                        "grade": 10,
+                        "email": "jonathan@mcpherson.ug"
+                    },
+                    {
+                        "id": 3,
+                        "name": "Constance Lowe",
+                        "age": 21,
+                        "grade": 26,
+                        "email": "patricia@heath.aq"
+                    },
+                    {
+                        "id": 4,
+                        "name": "Audrey Hall",
+                        "age": 22,
+                        "grade": 43,
+                        "email": "calvin@pritchard.ag"
+                    },
+                    {
+                        "id": 5,
+                        "name": "Constance Bowling",
+                        "age": 23,
+                        "grade": 18,
+                        "email": "marvin@lassiter.sl"
+                    }
+                ]
+            }
+            </pre>
+            <p>截图：</p>
+            <img src="assets/img/test1.png" class="img" />
+            <br />
+            <br />
+            <p>数据为空的情况:</p>
+            <img src="assets/img/td_empty.png" class="img" />
+        </div>
+        
+        <br />
+        <h4>三、配置</h4>
+        <div class="padding-left">
+            <h4>1. 列配置</h4>
+            <table border="1" class="Table">
+                <tbody>
+                    <tr class="firstRow">
+                        <td style="width: 94px;">
+                            &nbsp;
+
+                        </td>
+                        <td>
+                            配置项
+
+                        </td>
+                        <td>
+                            数据类型
+                        </td>
+                        <td style="width: 43px;">
+                            默认值
+                        </td>
+                        <td>
+                            说明
+                        </td>
+                        <td>
+                            示例
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="10" style="word-break: break-all;">
+                            columns:[{}]
+                        </td>
+                        <td>
+                            title
+                        </td>
+                        <td>
+                            String
+                        </td>
+                        <td colspan="1" rowspan="1" valign="null"></td>
+                        <td>
+                            表头显示的列名
+                        </td>
+                        <td>
+                            <pre class="brush:js;quick-code:false;gutter:false;">                               
+                                title: &#39;学号&#39; //普通文本
+                                title: &#39;&lt;input type=&quot;checkbox&quot;&gt;&#39; //html字符串
+                            </pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            field
+                        </td>
+                        <td>
+                            String
+                        </td>
+                        <td colspan="1" rowspan="1" valign="null"></td>
+                        <td>
+                            指定要显示在该列的数据字段名
+                        </td>
+                        <td>
+                            field: &#39;id&#39;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            defaultContent
+                        </td>
+                        <td>
+                            String<br />$object
+                        </td>
+                        <td colspan="1" rowspan="1" valign="null" style="word-break: break-all;"></td>
+                        <td>
+                            <p>
+                                数据为空值时要显示的默认值
+                            </p>
+                        </td>
+                        <td>
+                            <pre class="brush:js;quick-code:false;gutter:false;">                                
+                                defaultContent: &#39;--&#39; //普通字符串
+                                defaultContent: &#39;&lt;span&gt;--&lt;/span&gt;&#39; //html字符串
+                                defaultContent: $(&#39;&lt;span&gt;--&lt;/span&gt;&#39;) //jquery对象， 克隆该对象(包含事件)
+                                defaultContent: $(&quot;#add&quot;) //查找出来的jquery对象， 克隆该对象(包含事件)
+                        </pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            sort
+                        </td>
+                        <td>
+                            String<br />
+                            Boolean
+                        </td>
+                        <td colspan="1" rowspan="1" valign="null" style="word-break: break-all;">
+                            true<br />
+                        </td>
+                        <td>
+                            排序控制<br />
+                            如果要对该列进行排序,<br />
+                            则必须配置field属性.
+                        </td>
+                        <td>
+                            <pre class="brush:js;quick-code:false;gutter:false;">                                sort: true //在该列等待排序(默认)
+                                sort: &#39;desc&#39; //倒序
+                                sort: &#39;asc&#39; //升序
+                                sort: false //该列禁用排序</pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            className
+                        </td>
+                        <td>
+                            &nbsp;
+
+                        </td>
+                        <td colspan="1" rowspan="1" valign="null"></td>
+                        <td>
+                            要添加到该列的css类
+                        </td>
+                        <td>
+                            className: &#39;class1 class2&#39; //空格分隔多个类
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            width
+                        </td>
+                        <td>
+                            String<br />Number
+                        </td>
+                        <td colspan="1" rowspan="1" valign="null"></td>
+                        <td>
+                            列宽， 作用于th
+                        </td>
+                        <td>
+                            <pre class="brush:js;quick-code:false;gutter:false;">                                
+                                width: 30 //相当于30px
+                                width: &#39;30&#39; //相当于30px
+                                width: &#39;30px&#39;
+                                width: &#39;30%&#39; //百分比
+                            </pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>textAlign</td>
+                        <td>String</td>
+                        <td colspan="1" valign="null">'left'</td>
+                        <td>该列内容的水平对齐方式</td>
+                        <td>
+                            <p>textAlign: 'center'</p>
+                            <p>textAlign: 'left'</p>
+                            <p>textAlign: 'right'</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>verticalAlign</td>
+                        <td>String</td>
+                        <td colspan="1" valign="null">'middle'</td>
+                        <td>该列内容垂直对齐方式</td>
+                        <td>
+                            <p>verticalAlign: 'middle'</p>
+                            <p>verticalAlign: 'top'</p>
+                            <p>verticalAlign: 'bottom'</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" rowspan="1" valign="null" style="word-break: break-all;">
+                            tooltip
+                        </td>
+                        <td colspan="1" rowspan="1" valign="null" style="word-break: break-all;">
+                            <p>
+                                String
+                            </p>
+                            <p>
+                                boolean
+                            </p>
+                            <p>
+                                number
+                            </p>
+                            <p>
+                                $object
+                            </p>
+                        </td>
+                        <td colspan="1" rowspan="1" valign="null" style="word-break: break-all;">
+                            false
+                        </td>
+                        <td colspan="1" rowspan="1" valign="null" style="word-break: break-all;">
+                            在该列使用鼠标悬停提示
+                        </td>
+                        <td colspan="1" rowspan="1" valign="null" style="word-break: break-all;">
+                            <pre class="brush:js;quick-code:false;gutter:false;">                                
+                                //提示内容为该单元格的原始值
+                                tooltip: true
+ 
+                                //使用普通字符串作为提示内容
+                                tooltip: &#39;提示内容&#39; 
+                                
+                                //使用html字符串作为提示内容
+                                tooltip: &#39;&lt;span&gt;提示内容&lt;/span&gt;&#39; 
+                                
+                                //使用数值作为提示内容
+                                tooltip: 1234567890
+
+                                //使用jquery对象作为提示内容(克隆该对象, 包含事件)
+                                tooltip: $(&#39;&lt;span&gt;提示内容&lt;/span&gt;&#39;) 
+                                
+                                //使用查找出来的jquery对象作为提示内容(克隆对象, 包含事件)
+                                tooltip: $(&quot;#x1&quot;) 
+                                
+                                //禁用(默认)
+                                tooltip: false
+                            </pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            render
+                        </td>
+                        <td>
+                            Function
+                        </td>
+                        <td colspan="1" rowspan="1" valign="null"></td>
+                        <td>
+                            列内容渲染函数
+                        </td>
+                        <td style="word-break: break-all;">
+                            <pre class="brush:js;quick-code:false;gutter:false;">                            
+                                function（rowData, rowIndex, colIndex, colObj, options）{
+                                    /*this 指向该$td*/
+                                    //rowData: 该行数据对象
+                                    //rowIndex: 该行在该页的索引
+                                    //colIndex: 列索引
+                                    //colObj: 该列的配置对象
+                                    //options: 表格配置对象
+                                
+                                    /*设置tooltip, 这里的设置会覆盖tooltip配置*/
+                                    this.data(&quot;title&quot;, &quot;提示:&quot; + rowData.id); //普通字符串
+                                    this.data(&quot;title&quot;, &#39;&lt;span style=&quot;color:red;&quot;&gt;提示:&#39;+ rowData.id +&#39;&lt;/span&gt;&#39;); //html字符串
+                                    this.data(&quot;title&quot;, $(&#39;&lt;span style=&quot;color:red;&quot;&gt;提示:&#39;+ rowData.id +&#39;&lt;/span&gt;&#39;)); //jquery对象
+                        
+                                    /*这里返回的内容会覆盖field配置*/
+                                    return rowData.id; //返回行数据对象的字段
+                                    return &#39;--&#39;; //返回普通内容
+                                    return &#39;&lt;span&gt;&#39;+rowData.id+&#39;&lt;/span&gt;&#39;; //返回html字符串
+                                    return $(&#39;&lt;span&gt;&#39;+rowData.id+&#39;&lt;/span&gt;&#39;); //返回jquery对象， 克隆该对象(包含事件)
+                                }
+                            </pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="word-break: break-all;">defColumns:{}</td>
+                        <td>&nbsp;</td>
+                        <td>object</td>
+                        <td colspan="1" valign="null"></td>
+                        <td>
+                            <p>所有列的默认配置. </p>
+                            <p>在列的具体配置中会覆盖这里的配置项</p>
+                        </td>
+                        <td style="word-break: break-all;"><p>&nbsp;</p></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <br />
+            <p>列配置示例:</p>
+            <pre class="brush:js;quick-code:false;">
+            $(function () {
+                var config = {
+                    data: tableData,    //本地数据源
+                    columns: [
+                        {
+                            title: '<input type="checkbox" />',
+                            sort: false,
+                            width: '20',
+                            render: function () {
+                                return $('<input type="checkbox" />');
+                            }
+                        },
+                        {
+                            title: '学号',
+                            field: 'id',
+                            className: 'success'
+                        },
+                        { title: '姓名', field: 'name' },
+                        {
+                            title: '年龄',
+                            field: 'age',
+                            sort: 'asc',
+                        },
+                        {
+                            title: '学分',
+                            field: 'grade',
+                            defaultContent: '<span style="color:red;">--</span>'
+                        },
+                        {
+                            title: '电子邮箱',
+                            field: 'email',
+                            defaultContent: $("#add")
+                        }
+                    ],
+                    defaultSize: 10 //页面大小
+                };
+                $("#test2").xjzTable(config);
+            });
+            </pre>
+
+            <button id="add">添加</button> (表格中引用了该按钮)
+            <script>
+                $("#add").click(function () { alert("添加"); });
+            </script>
+            <table id="test2" class="table table-striped table-bordered table-hover table-condensed"></table>
+            <hr />
+            <br />
+            <p>tooltip配置示例:</p>
+            <pre class="brush:html;quick-code:false;">
+                <div style="width:60%;">
+                    <table class="table table-striped table-bordered table-hover table-condensed3 table-fixed-hidden"></table>
+                    <!--表格id="test6"  请参考页码底部的css类说明-->
+                </div>
+            </pre>
+            <pre class="brush:js;quick-code:false;">
+                $("#test6").xjzTable({
+                    data: tableData2,
+                    defColumns: {
+                        tooltip: true   //启用所有列的tooltip
+                    },
+                    columns: [{
+                        title: '<input type="checkbox" />',
+                        sort: false,
+                        width: '20',
+                        render: function () {
+                            return $('<input type="checkbox" />');
+                        }
+                    }, {
+                        title: '编号',
+                        field: 'id',
+                        width: 30,
+                        tooltip:false   //在该列关闭tooltip
+                    }, {
+                        title: '文件名',
+                        field: 'fileName',
+                        width: 100,
+                        render: function (rowData) {
+                            this.data("title", '<img src="assets/img/' + rowData.fileName + '" />');    //设置该列tooltip
+                            return '<span style="color:blue;">'+rowData.fileName+'</span>';     //设置该列的内容生成
+                        }
+                    }, {
+                        title: '文件大小',
+                        field: 'size',
+                        width: 100
+                    }, {
+                        title: '创建时间',
+                        field: 'time'
+                    }, {
+                        title: '说明',
+                        field: 'content'
+                    }]
+                });
+            </pre>
+            <div style="width:60%;">
+                <table id="test6" class="table table-striped table-bordered table-hover table-condensed3 table-fixed-hidden"></table>
+            </div>
+
+            <br />
+            <h4>2. ajax配置</h4>
+            <p>该ajax配置其实就是jquery的$.ajax()配置, 这里只是初始化了几个默认值, 并且重写了success函数</p>
+            <table border="1" class="Table">
+                <tr>
+                    <td style="width:50px;">&nbsp;</td>
+                    <td>配置项</td>
+                    <td style="width: 9%;">数据类型</td>
+                    <td>默认值</td>
+                    <td style="width: 30%;">说明</td>
+                    <td><p>示例</p></td>
+                </tr>
+                <tr>
+                    <td rowspan="11">ajax:{}</td>
+                    <td>type</td>
+                    <td>String</td>
+                    <td>'get'</td>
+                    <td>请求方式</td>
+                    <td>type:'post'</td>
+                </tr>
+                <tr>
+                    <td>dataType</td>
+                    <td>String</td>
+                    <td>'json'</td>
+                    <td>数据返回格式(建议不要修改)</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>cache</td>
+                    <td>Boolean</td>
+                    <td>false</td>
+                    <td>请求是否被缓存(建议不要修改)</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>pagingText</td>
+                    <td>String</td>
+                    <td>'paging'</td>
+                    <td>请求页码标识(从1开始)</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>startText</td>
+                    <td>String</td>
+                    <td>'start'</td>
+                    <td>请求的起始记录的索引标识(从0开始)</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>limitText</td>
+                    <td>String</td>
+                    <td>'limit'</td>
+                    <td>请求的条数标识</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>sendCallback</td>
+                    <td>function</td>
+                    <td>null</td>
+                    <td>
+                        <p>发送之前要执行的函数, 一般用于修改发送的参数</p>
+                        <p>sendCallback(options) //options为表格配置对象</p>
+                    </td>
+                    <td>
+                        <pre class="brush:js;quick-code:false;">
+                            sendCallback(options){
+                                options.ajax.data.a=1;
+                                //在请求的url参数中增加a=1
+                                //函数不必返回值
+                            }
+                        </pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td>successCallback</td>
+                    <td>function</td>
+                    <td>null</td>
+                    <td>
+                        <p>请求成功的回调函数, 一般用于格式化返回的数据,</p>
+                        <p>请用该方法代替$.ajax.success方法</p>
+                        <br />
+                        <p>successCallback(data, options) </p>
+                        <p>//data为服务器返回的数据(由json转化的js对象)</p>
+                        <p>//options为表格配置对象</p>
+                    </td>
+                    <td>
+                        <pre class="brush:js;quick-code:false;">
+                            successCallback(data, options) {
+                                //如果服务器返回标识为0, 则设置行数据为空数组, 并弹出错误消息
+                                if(data.result_status == 0){
+                                    data.rows=[];
+                                    alert(data.result_message);
+                                }else{
+                                    $.each(data.rows,function(i,d){
+                                        d.a=1; //在每一行的数据中增加a=1
+                                    });
+                                }
+                                //函数不必返回值
+                            }
+                        </pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td>dataSrc</td>
+                    <td>String | function</td>
+                    <td>'rows'</td>
+                    <td>
+                        <p>从服务器返回的数据中提取行数据的方式,</p><br />
+                        <p>行数据要求为对象数组:[{},{},{}]</p><br />
+                        <p>如果dataSrc配置为字符串, 则字符串间的&quot;.&quot;表示为对象层级关系</p>
+                    </td>
+                    <td>
+                        <pre class="brush:js;quick-code:false;">
+                            //使用返回数据中第一层的rows, 返回示例: { rows:[] }
+                            dataSrc: 'rows' 
+
+                            //返回示例: { data: { rows:[] } }
+                            dataSrc:'data.rows'   
+  
+                            //作为一个返回数据的函数, 应用于更为复杂的情况
+                            dataSrc:function(data, options){
+                                //data 为服务器返回的数据(由json转化的js对象)
+                                //options 为表格配置对象
+                                return data.rows; 
+                            }
+                        </pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td>totalSrc</td>
+                    <td>String | function</td>
+                    <td>'total'</td>
+                    <td>
+                        <p>从服务器返回的数据中提取总记录数的方式,</p>
+                        <p>同上!</p>
+                    </td>
+                    <td>
+                        <p>totalSrc: 'total' //使用返回数据中第一层的'total', 返回示例: {'total':300}</p>
+                        <p>同上!</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>masklayer</td>
+                    <td>Boolean</td>
+                    <td>true</td>
+                    <td>在ajax加载时是否显示表格遮罩层</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+
+            <br />
+            <h4>3. 本地数据源</h4>
+            <p>如果同时配置了ajax数据源和本地数据源, 则本地数据源覆盖ajax数据源</p>
+            <table border="1" class="Table">
+                <tr>
+                    <td width="88">配置项</td>
+                    <td width="88">数据类型</td>
+                    <td width="200">说明</td>
+                    <td width="729">示例</td>
+                </tr>
+                <tr>
+                    <td>data</td>
+                    <td>Array</td>
+                    <td>对象数组</td>
+                    <td>[{a:1, b:2},{a:2, b:3}]</td>
+                </tr>
+                <tr>
+                    <td>dataFilter</td>
+                    <td>function</td>
+                    <td>
+                        <p>在分页排序之前执行函数, </p>
+                        <p>用于过滤, 格式化数据</p>
+                        <br />
+                        <p>dataFilter(data, options)</p>
+                        <p>//this指向$table</p>
+                        <p>//data: 对象数组(本地数据源)</p>
+                        <p>//options: 表格配置对象</p>
+                    </td>
+                    <td>
+                        <pre class="brush:js;quick-code:false;">
+                            dataFilter: function (data, options) {
+                                //过滤掉id等于1的行
+                                var rows = [];
+                                $.each(data, function (i, d) {
+                                    if (d.id != 1) {
+                                        rows.push(d);
+                                    }
+                                });
+                                return rows;
+                            }
+                        </pre>
+                    </td>
+                </tr>
+            </table>
+
+            <br />
+            <h4>4. 分页</h4>
+            <p>如果设置 paging:null, 则不显示分页, 且ajax请求时不发送分页参数</p>
+            <table border="1" class="Table">
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>配置项</td>
+                    <td>数据类型</td>
+                    <td>默认值</td>
+                    <td>说明</td>
+                </tr>
+                <tr>
+                    <td rowspan="19">paging:{}</td>
+                    <td>startPage</td>
+                    <td>Number</td>
+                    <td>1</td>
+                    <td>起始页面</td>
+                </tr>
+                <tr>
+                    <td>visiblePages</td>
+                    <td>Number</td>
+                    <td>7</td>
+                    <td>可视的分页按钮数量</td>
+                </tr>
+                <tr>
+                    <td>pagingType</td>
+                    <td>String</td>
+                    <td>'simple_numbers'</td>
+                    <td>
+                        <pre class="brush:js;quick-code:false;gutter:false;">
+                            /*分页类型:*/
+                            'full_numbers':   //首页 上一页 [1...] 下一页 尾页
+                            'simple_numbers': //上一页[1...]下一页
+                            'full':           //首页 上一页 下一页 尾页
+                            'simple':         //上一页 下一页
+                            'numbers':        //只显示页面按钮[1...]
+                        </pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td>ellipsis</td>
+                    <td>Boolean</td>
+                    <td>true</td>
+                    <td>
+                        <p>是否显示省略页面[...]</p>
+                        <p>如果visiblePages小于7, 则不显示</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>first</td>
+                    <td>String</td>
+                    <td rowspan="5">
+                        <p>翻页按钮上显示的文本</p>
+                        <p>默认值为lang(语言配置)里的相应值,</p>
+                        <p>如果这里有设置, 则覆盖lang里的相应值</p>
+                    </td>
+                    <td>[首页] 按钮显示的文本</td>
+                </tr>
+                <tr>
+                    <td>prev</td>
+                    <td>String</td>
+                    <td>[上一页] 按钮显示的文本</td>
+                </tr>
+                <tr>
+                    <td>next</td>
+                    <td>String</td>
+                    <td>[下一页] 按钮显示的文本</td>
+                </tr>
+                <tr>
+                    <td>last</td>
+                    <td>String</td>
+                    <td>[尾页] 按钮显示的文本</td>
+                </tr>
+                <tr>
+                    <td>more</td>
+                    <td>String</td>
+                    <td>[...] 按钮显示的文本</td>
+                </tr>
+                <tr>
+                    <td>firstClass</td>
+                    <td>String</td>
+                    <td>'first'</td>
+                    <td>[首页] 按钮css类 空格分隔多个类</td>
+                </tr>
+                <tr>
+                    <td>prevClass</td>
+                    <td>String</td>
+                    <td>'prev'</td>
+                    <td>[上一页] 按钮css类</td>
+                </tr>
+                <tr>
+                    <td>nextClass</td>
+                    <td>String</td>
+                    <td>'next'</td>
+                    <td>[下一页] 按钮css类</td>
+                </tr>
+                <tr>
+                    <td>lastClass</td>
+                    <td>String</td>
+                    <td>'last'</td>
+                    <td>[尾页] 按钮css类</td>
+                </tr>
+                <tr>
+                    <td>moreClass</td>
+                    <td>String</td>
+                    <td>'more'</td>
+                    <td>[&quot;更多页&quot;] 按钮css类</td>
+                </tr>
+                <tr>
+                    <td>pageClass</td>
+                    <td>String</td>
+                    <td>'page'</td>
+                    <td>"页面" 按钮css类</td>
+                </tr>
+                <tr>
+                    <td>activeClass</td>
+                    <td>String</td>
+                    <td>'active'</td>
+                    <td>"当前页"(激活页) 按钮css类</td>
+                </tr>
+                <tr>
+                    <td>disabledClass</td>
+                    <td>String</td>
+                    <td>'disabled'</td>
+                    <td>禁用 按钮css类</td>
+                </tr>
+                <tr>
+                    <td>pagingClass</td>
+                    <td>String</td>
+                    <td>'pagination pagination-sm'</td>
+                    <td>
+                        <p>分页&lt;ul&gt;列表css类</p>
+                        <br />
+                        <p>jquery-xjzTable-all.min.css文件提供了两种风格的分页</p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;'pagination pagination-sm': bootstrap风格</p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;'paging-transition': css3过渡效果IE10+</p>
+                        <br />
+                        <p>如要修改请参考源码</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>wrapClass</td>
+                    <td>String</td>
+                    <td>'xjzTable-paging'</td>
+                    <td>分页&lt;ul&gt;包裹层css类, 如要修改请参考源码</td>
+                </tr>
+            </table>
+
+            <div class="">
+                <ul style=" vertical-align: middle;" class="paging-transition"><li class="prev"><a href="javacript:;">上一页</a></li><li class="page"><a href="javacript:;">1</a></li><li class="more"><a href="javacript:;">...</a></li><li class="page"><a href="javacript:;">15</a></li><li class="page"><a href="javacript:;">16</a></li><li class="page"><a href="javacript:;">17</a></li><li class="page"><a href="javacript:;">18</a></li><li class="page"><a href="javacript:;">19</a></li><li class="active page"><a href="javacript:;">20</a></li><li class="page"><a href="javacript:;">21</a></li><li class="page"><a href="javacript:;">22</a></li><li class="page"><a href="javacript:;">23</a></li><li class="page"><a href="javacript:;">24</a></li><li class="page"><a href="javacript:;">25</a></li><li class="more"><a href="javacript:;">...</a></li><li class="page"><a href="javacript:;">30</a></li><li class="next"><a href="javacript:;">下一页</a></li></ul>
+                <span>&nbsp;&nbsp;(pagingClass: 'paging-transition' //css3过渡效果IE10+)</span>
+            </div>
+
+            <br />
+            <h4>5. 分页信息</h4>
+            <p>如果设置 pagingInfo:null, 则不显示分页信息</p>
+            <table border="1" class="Table">
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>配置项</td>
+                    <td>数据类型</td>
+                    <td>默认值</td>
+                    <td>说明</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">pagingInfo:{}</td>
+                    <td>pagingInfoClass</td>
+                    <td>String</td>
+                    <td>'paging-info-sm'</td>
+                    <td>分页信息&lt;span&gt; css类, 如要修改请参考源码</td>
+                </tr>
+                <tr>
+                    <td>wrapClass</td>
+                    <td>String</td>
+                    <td>'xjzTable-paging-info'</td>
+                    <td>包裹层css类, 如要修改请参考源码</td>
+                </tr>
+            </table>
+
+            <br />
+            <h4>6. 分页大小(每页显示多少条记录)</h4>
+            <p>如果设置 pageLength:null, 则不显示分页大小选择控件</p>
+            <table border="1" class="Table">
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>配置项</td>
+                    <td>数据类型</td>
+                    <td>默认值</td>
+                    <td>说明</td>
+                </tr>
+                <tr>
+                    <td rowspan="3">pageLength:{}</td>
+                    <td>pageLengthClass</td>
+                    <td>String</td>
+                    <td>'form-control input-sm'</td>
+                    <td><p>应用到&lt;select&gt; 的css类</p></td>
+                </tr>
+                <tr>
+                    <td>wrapClass</td>
+                    <td>String</td>
+                    <td>'xjzTable-paging-length'</td>
+                    <td><p>包裹层css类, 如要修改请参考源码</p></td>
+                </tr>
+                <tr>
+                    <td>data</td>
+                    <td>Array</td>
+                    <td>[10, 25, 50, 100]</td>
+                    <td><p>分页大小选项</p></td>
+                </tr>
+                <tr>
+                    <td colspan="2">defaultSize</td>
+                    <td>Number</td>
+                    <td>25</td>
+                    <td><p>默认分页大小, 如果pageLength.data里没有该值, 则会自动添加</p></td>
+                </tr>
+            </table>
+
+            <br />
+            <h4>7. 排序</h4>
+            <p>ajax请求时排序参数说明:</p>
+            <div class="padding-left">
+                <p>无排序: http://localhost:8088/doc/assets/test.json?paging=1&start=0&limit=10&<span class="text-red">sort=[]</span>&_=1476017061055</p>
+                <p>降序: http://localhost:8088/doc/assets/test.json?paging=1&start=0&limit=10&<span class="text-red">sort=[{"field":"name","type":"desc"}]</span>&_=1476017061055 //依照name字段降序</p> 
+                <p>升序: http://localhost:8088/doc/assets/test.json?paging=1&start=0&limit=10&<span class="text-red">sort=[{"field":"name","type":"asc"}]</span>&_=1476017061055 //依照name字段升序</p>  
+                <p>(排序参数名为sort, 值为一个json格式的对象数组. 对象中field属性表示要排序的字段, type属性表示排序是降序还是升序)</p>
+            </div>
+            <br />
+            <p>如果设置 sort:null, 则取消所有列的排序功能. 如果要禁用或设置某一列的默认排序请参考columns配置中sort参数</p>
+            <table border="1" class="Table">
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>配置项</td>
+                    <td>数据类型</td>
+                    <td>默认值</td>
+                    <td>说明</td>
+                </tr>
+                <tr>
+                    <td rowspan="5">sort:{}</td>
+                    <td>noneClass</td>
+                    <td>String</td>
+                    <td>'sort sort-none'</td>
+                    <td>等待排序 表头图标的css类 空格分隔多个类, 若要修改请参考源码</td>
+                </tr>
+                <tr>
+                    <td>ascClass</td>
+                    <td>String</td>
+                    <td>'sort sort-asc'</td>
+                    <td>升序 表头图标的css的类 空格分隔多个类, 若要修改请参考源码</td>
+                </tr>
+                <tr>
+                    <td>descClass</td>
+                    <td>String</td>
+                    <td>'sort sort-desc'</td>
+                    <td>降序 表头图标的css类 空格分隔多个类, 若要修改请参考源码</td>
+                </tr>
+                <tr>
+                    <td>activeClass</td>
+                    <td>String</td>
+                    <td>'sort-active'</td>
+                    <td>排序列单元格的css类 空格分隔多个类, 若要修改请参考源码</td>
+                </tr>
+                <tr>
+                    <td>timeout</td>
+                    <td>Number</td>
+                    <td>250</td>
+                    <td>排序的延迟时间(毫秒), 在该时间内多次点击只有一次有效, 避免服务器压力过大</td>
+                </tr>
+            </table>
+
+            <br />
+            <h4>8. 回调函数</h4>
+            <table border="1" class="Table">
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>说明</td>
+                </tr>
+                <tr>
+                    <td>theadCallback</td>
+                    <td>
+                        <p>&lt;thead&gt;创建完成的回调函数, 此时&lt;th&gt;已经插入</p>
+                        <p>如果表格本身有&lt;thead&gt;, 则不会执行该函数</p>
+                        <pre class="brush:js;quick-code:false;">
+                            theadCallback(options)
+                            //this指向$thead
+                            //options为表格配置对象
+                        </pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td>rowCallback</td>
+                    <td>
+                        <p>行创建完成的回调函数, td已经插入</p>
+                        <pre class="brush:js;quick-code:false;">
+                            rowCallback(rowData, rowIndex, options)
+                            //this指向$td
+                            //rowData: 行数据对象
+                            //rowIndex: 行在该页的索引
+                            //options: 表格配置对象
+                        </pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td>drawCallback</td>
+                    <td>
+                        <p>表格绘制完成的回调函数</p>
+                        <pre class="brush:js;quick-code:false;">
+                            drawCallback(rows, options)
+                            //this指向$table
+                            //rows: 所有行数据
+                            //options: 表格配置对象
+                        </pre>
+                    </td>
+                </tr>
+            </table>
+
+            <br />
+            <h4>9. 控件DOM 控制</h4>
+            <div>
+                <img src="assets/img/dom.png" class="img" />
+            </div>
+            <table border="1" class="Table">
+                <tr>
+                    <td>配置项</td>
+                    <td>数据类型</td>
+                    <td>默认值</td>
+                    <td>说明</td>
+                </tr>
+                <tr>
+                    <td>dom</td>
+                    <td>String</td>
+                    <td>&quot;T&lt;'pull-left'I&gt;&lt;'pull-left'L&gt;&lt;'pull-right'P&gt;&quot;</td>
+                    <td>
+                        <p>用于生成各个控件的DOM包裹层, 和控制位置.</p>
+                        <br />
+                        <p>'&lt;&gt;' 代表一个&lt;div&gt;&lt;/div&gt;元素</p>
+                        <p>&quot;&lt;'class1'&gt;&quot; 代表一个&lt;div class=&quot;class1&quot;&gt;&lt;/div&gt;</p>
+                        <p>&quot;&lt;'class1'T&gt;&quot; 代表一个&lt;div class=&quot;class1&quot;&gt;&lt;table&gt;&lt;/table&lt;/div&gt;</p>
+                        <br />
+                        <p>默认值中的类说明:</p>
+                        <p>pull-left: 左浮动</p>
+                        <p>pull-right: 右浮动</p>
+                        <p>更多类说明请参见页面底部的css类说明</p>
+                        <br />
+                        <p>使用bootstrap布局：</p>
+                        <p>dom: "<'row'<'col-sm-12'T>><'row'<'col-sm-3'I><'col-sm-3'L><'col-sm-6'P>>"</p>
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <div class="clearfix">
+                <div style="width:48%;float:left;">
+                    <p>dom: "<'pull-left'L>T<'pull-left'I><'pull-right'P>"</p>
+                    <table id="test3" class="table table-striped table-bordered table-hover table-condensed"></table>
+                </div>
+                <div style="width:48%;float:right;">
+                    <p>dom: "<'pull-right'P>T<'pull-left'I><'pull-right'L>"</p>
+                    <table id="test4" class="table table-striped table-bordered table-hover table-condensed"></table>
+                </div>
+            </div>
+            <br />
+            <p>dom: "<'table-responsive clearfloat'T><'pull-left'I><'pull-left'L><'pull-right'P>"  使用css类.table-responsive使表格不换行， 水平滚动</p>
+            <div style=" border: 1px solid #ddd; padding: 0 10px;">
+                <table id="test5" class="table table-striped table-bordered table-hover table-condensed"></table>
+            </div>
+
+            <br />
+            <h4>10. 其他配置项</h4>
+            <table border="1" class="Table">
+                <tr>
+                    <td colspan="2">配置项</td>
+                    <td>数据类型</td>
+                    <td>默认值</td>
+                    <td>说明</td>
+                </tr>
+                <tr>
+                    <td colspan="2">lang</td>
+                    <td>String</td>
+                    <td>'zh_CN'</td>
+                    <td>
+                        <p>语言选项</p>
+                        <p>'zh_CN': 简体中文</p>
+                        <p>'zh_TW': 繁体中文</p>
+                        <p>'en_US': 英文</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">evenClass</td>
+                    <td>String</td>
+                    <td>'even'</td>
+                    <td>奇数行css类 多个类请用空格分隔</td>
+                </tr>
+                <tr>
+                    <td colspan="2">oddClass</td>
+                    <td>String</td>
+                    <td>'odd'</td>
+                    <td>偶数行css类 多个类请用空格分隔</td>
+                </tr>
+                <tr>
+                    <td colspan="2">xjzTooltipWrapClass</td>
+                    <td>String</td>
+                    <td>'xjzTooltip'</td>
+                    <td>tooltip包裹层的css类, 若要修改请参考源码</td>
+                </tr>
+                <tr>
+                    <td colspan="2">xjzTableWrapClass</td>
+                    <td>String</td>
+                    <td>'xjzTable-container clearfix'</td>
+                    <td>总包裹层css类, 若要修改请参考源码</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">masklayer:{}</td>
+                    <td>containerMasklayerClass</td>
+                    <td>String</td>
+                    <td>'xjzTable-container-masklayer'</td>
+                    <td>总包裹层的加载遮罩层css类(透明),  若要修改请参考源码</td>
+                </tr>
+                <tr>
+                    <td>tableMasklayerClass</td>
+                    <td>String</td>
+                    <td>'xjzTable-table-masklayer'</td>
+                    <td>表格的加载遮罩层css类, 用于显示加载等待..., 若要修改请参考源码</td>
+                </tr>
+            </table>
+
+            <br />
+            <h4>11. 所有配置项</h4>
+            <pre class="brush:js;quick-code:false;">
+            {
+                data: null,
+                dataFilter: null,
+                ajax: {
+                    type:'get',
+                    dataType: 'json',
+                    cache: false,
+                    startText: 'start',
+                    limitText: 'limit',
+                    pagingText: 'paging',
+                    sendCallback: null,
+                    successCallback: null,
+                    dataSrc: 'rows',
+                    totalSrc: 'total',
+                    masklayer: true
+                },
+                defColumns: {},
+                columns: [],
+                paging: {
+                    startPage: 1,
+                    visiblePages: 7,
+                    pagingType: 'simple_numbers',   //分页类型
+                    ellipsis: true,     //是否显示省略页面...
+                    //first: '首页',
+                    //prev: '上一页',
+                    //next: '下一页',
+                    //last: '尾页',
+                    //more: '...',        //省略页面文本
+                    firstClass: 'first',
+                    prevClass: 'prev',
+                    nextClass: 'next',
+                    lastClass: 'last',
+                    moreClass: 'more',  //省略页面css类
+                    pageClass: 'page',
+                    activeClass: 'active',
+                    disabledClass: 'disabled',
+                    pagingClass: 'pagination pagination-sm',    //分页ul css类
+                    wrapClass: 'xjzTable-paging'   //包裹层css类
+                },
+                pagingInfo: {
+                    pagingInfoClass: 'paging-info-sm',   //分页信息span css类
+                    wrapClass: 'xjzTable-paging-info'  //包裹层css类
+                },
+                pageLength: {
+                    pageLengthClass: 'form-control input-sm',   //每页数量select css类
+                    wrapClass: 'xjzTable-paging-length',    //包裹层css类
+                    data: [10, 25, 50, 100]
+                },
+                defaultSize: 25,
+                sort: {
+                    noneClass: 'sort sort-none',
+                    ascClass: 'sort sort-asc',
+                    descClass: 'sort sort-desc',
+                    activeClass: 'sort-active',
+                    timeout: 250
+                },
+                theadCallback: null,
+                rowCallback: null,
+                drawCallback: null,
+                lang: 'zh_CN',
+                dom: "T<'pull-left'I><'pull-left'L><'pull-right'P>",
+                evenClass: 'even',
+                oddClass: 'odd',
+                td_emptyClass: 'td_empty',  //表格数据为空时, 单元格css类
+                xjzTooltipWrapClass: 'xjzTooltip',
+                xjzTableWrapClass: 'xjzTable-container clearfix',
+                masklayer: {
+                    containerMasklayerClass: 'xjzTable-container-masklayer',
+                    tableMasklayerClass: 'xjzTable-table-masklayer'
+                }
+            }
+        </pre>
+
+            <br />
+            <h4>12. jquery-xjzTable-all.min.css 类说明</h4>
+            <p>蓝色标记为bootstrap样式</p>
+            <table border="1" class="Table">
+                <tbody>
+                    <tr class="firstRow">
+                        <td colspan="1" rowspan="1"></td>
+                        <td colspan="1" rowspan="1" style="word-break: break-all;">
+                            css类
+                        </td>
+                        <td colspan="1" rowspan="1" style="word-break: break-all;">
+                            说明
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="14">
+                            表格
+                        </td>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">table</span>
+                        </td>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">基础样式</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">table-bordered</span>
+                        </td>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">边框线</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">table-condensed</span>
+                        </td>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">紧凑单元格&nbsp;padding: 5px</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            table-condensed3
+                        </td>
+                        <td>
+                            更加紧凑的单元格&nbsp;padding:&nbsp;3px
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">table-striped</span>
+                        </td>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">斑马条纹样式行</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">table-hover</span>
+                        </td>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">鼠标悬停状态</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">table-responsive</span>
+                        </td>
+                        <td>
+                            <p>
+                                <span style="color: rgb(0, 176, 240);">响应式表格, 当屏幕小于768px时单元格不换行, 表格底部出现滚动条.</span>
+                            </p>
+                            <p>
+                                <span style="color: rgb(0, 176, 240);">使用该类作为容器包裹表格:</span>
+                            </p>
+                            <p>
+                                <span style="color: rgb(0, 176, 240);">&lt;div class=&quot;.table-responsive&quot;&gt;</span>
+                            </p>
+                            <p>
+                                <span style="color: rgb(0, 176, 240);">&nbsp; &lt;table&gt;&lt;/table&gt;</span>
+                            </p>
+                            <p>
+                                <span style="color: rgb(0, 176, 240);">&lt;/div&gt;</span>
+                            </p>
+                            <p>
+                                <br />
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" rowspan="1">
+                            table-fixed-hidden
+                        </td>
+                        <td colspan="1" rowspan="1">
+                            固定表格布局, td不换行, 溢出隐藏, 以&quot;...&quot;代替隐藏部分
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">active</span>
+                        </td>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">给单元格或行添加 鼠标悬停 样式</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">success</span>
+                        </td>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">给单元格或行添加 &quot;成功&quot; 的样式(绿色)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">info</span>
+                        </td>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">给单元格或行添加 &quot;信息&quot; 的样式(蓝色)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">warning</span>
+                        </td>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">给单元格或行添加 &quot;警告&quot; 的样式(黄色)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span style="color: rgb(0, 176, 240);">danger</span></td>
+                        <td><span style="color: rgb(0, 176, 240);">给单元格或行添加 &quot;错误&quot; 的样式(红色)</span></td>
+                    </tr>
+                    <tr>
+                        <td>td_empty</td>
+                        <td>表格数据为空时, 单元格css类</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">
+                            分页信息
+                        </td>
+                        <td>
+                            paging-info-sm
+                        </td>
+                        <td>
+                            更小的分页信息&nbsp;line-height: 30px;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            xjzTable-paging-info
+                        </td>
+                        <td>
+                            分页信息的包裹层
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">
+                            分页大小
+                        </td>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">form-control</span>
+                        </td>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">表单控件基础样式</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">input-sm</span>
+                        </td>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">更小的表单控件</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            xjzTable-paging-length
+                        </td>
+                        <td>
+                            分页大小包裹层
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="12">
+                            分页按钮
+                        </td>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">pagination</span>
+                        </td>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">bootstrap样式分页按钮</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">pagination-sm</span>
+                        </td>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">更小的bootstrap样式分页按钮</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            paging-transition
+                        </td>
+                        <td>
+                            css3过渡效果的分页按钮, 不能和.pagination同时使用
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            first
+                        </td>
+                        <td>
+                            首页按钮 标识类
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            prev
+                        </td>
+                        <td>
+                            上一页按钮 标识类
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            next
+                        </td>
+                        <td>
+                            下一页按钮 标识类
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            last
+                        </td>
+                        <td>
+                            尾页按钮 标识类
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            more
+                        </td>
+                        <td>
+                            ...按钮&nbsp;标识类
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            page
+                        </td>
+                        <td>
+                            页面数字按钮 标识类
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">active</span>
+                        </td>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">当前页面 标识类</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">disabled</span>
+                        </td>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">禁用按钮 标识类</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            xjzTable-paging
+                        </td>
+                        <td>
+                            分页按钮包裹层
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="5">
+                            &nbsp;排序
+                        </td>
+                        <td>
+                            sort
+                        </td>
+                        <td>
+                            排序列th样式
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            sort-none
+                        </td>
+                        <td>
+                            等待排序图标
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            sort-asc
+                        </td>
+                        <td>
+                            升序图标
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            sort-desc
+                        </td>
+                        <td>
+                            降序图标
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            sort-active
+                        </td>
+                        <td>
+                            排序列单元格样式
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4">
+                            浮动类
+                        </td>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">pull-left</span>
+                        </td>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">左浮动</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">pull-right</span>
+                        </td>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">右浮动</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">clearfix</span>
+                        </td>
+                        <td>
+                            <span style="color: rgb(0, 176, 240);">清除浮动,应用于容器元素上在底部清除该内部元素的浮动效果</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            clearfloat
+                        </td>
+                        <td>
+                            清除浮动,在该元素本身清除浮动
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">
+                            遮罩层
+                        </td>
+                        <td>
+                            xjzTable-container-masklayer
+                        </td>
+                        <td>
+                            所有控件的遮罩层
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            xjzTable-table-masklayer
+                        </td>
+                        <td>
+                            表格加载遮罩层
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            单元格鼠标悬停提示
+                        </td>
+                        <td>
+                            xjzTooltip
+                        </td>
+                        <td>
+                            提示内容的容器
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            总包裹层
+                        </td>
+                        <td>
+                            xjzTable-container
+                        </td>
+                        <td>
+                            所有控件的包裹层
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4>四、API方法</h4>
+        <div class="padding-left">
+            <p>调用方式: $("table").data("xjzTable").methodName();  &nbsp;&nbsp;&nbsp;&nbsp;//$("table").data("xjzTable")用于获取表格API对象</p>
+            <table border="1" class="Table">
+                <tr>
+                    <td style="width:210px;">方法名</td>
+                    <td style="width:100px;">返回值类型</td>
+                    <td>说明</td>
+                    <td>示例</td>
+                </tr>
+                <tr>
+                    <td>reload</td>
+                    <td>undefined</td>
+                    <td>
+                        <p>reload(paging, sort, masklayer)</p>
+                        <p>表格刷新方法</p>
+                        <pre class="brush:js;quick-code:false;gutter:false;">
+                            /*参数说明
+                            -----------------------------------------------------------------
+                            paging 分页:
+                                Boolean | true:重新分页(加载第一页); false:保存当前分页状态(默认)
+                                Number  | 1:加载第一页; 2:加载第二页
+                            sort 排序:
+                                Boolean | true:清除排序; false:保留当前排序状态(默认),
+                                Object  | 对新字段进行排序 { field:'name', type:'desc' }
+                            masklayer 遮罩层:
+                                Boolean | true:显示加载遮罩层（默认）； false：不现实加载遮罩层
+                            */
+                        </pre>
+                    </td>
+                    <td>
+                        <pre class="brush:js;quick-code:false;gutter:false;">
+                            var table = $("table").data("xjzTable");
+
+                            table.reload(); 
+                            //刷新当前页, 保持排序状态
+
+                            table.reload(5); 
+                            //保持排序状态, 加载第5页
+
+                            table.reload(true, true); 
+                            //重新分页,并清除排序状态
+
+                            table.reload(true, {field: 'age', type:'asc'}); 
+                            //重新分页,并根据age字段进行升序
+
+                            table.reload(false,false,false);
+                            //保持排序状态, 刷新当前页, 不显示加载遮罩层
+                        </pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td>getTotalPages</td>
+                    <td>Number</td>
+                    <td>获取总页数</td>
+                    <td>$(&quot;table&quot;).data(&quot;xjzTable&quot;).getTotalPages();</td>
+                </tr>
+                <tr>
+                    <td>getTotal</td>
+                    <td>Number</td>
+                    <td>获取总记录数</td>
+                    <td>$(&quot;table&quot;).data(&quot;xjzTable&quot;).getTotal();</td>
+                </tr>
+                <tr>
+                    <td>getCurrentPage</td>
+                    <td>Number</td>
+                    <td>获取当前页码</td>
+                    <td>$(&quot;table&quot;).data(&quot;xjzTable&quot;).getCurrentPage();</td>
+                </tr>
+                <tr>
+                    <td>getCurrentCount</td>
+                    <td>Number</td>
+                    <td>获取当前页记录数</td>
+                    <td>$(&quot;table&quot;).data(&quot;xjzTable&quot;).getCurrentCount();</td>
+                </tr>
+            </table>
+        </div>
+        <br />
+    </div>
+</body>
+</html>
