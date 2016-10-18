@@ -1,9 +1,7 @@
 #jquery-xjzTable
 一个功能强大且简单易用的表格插件.
 
-演示地址:http://null_720_0252.oschina.io/jquery-xjztable/doc/
-
-![输入图片说明](http://null_720_0252.oschina.io/jquery-xjztable/doc/assets/img/img.png "在这里输入图片标题")
+![输入图片说明](https://xujunzhou.github.io/jquery-xjzTable/doc/assets/img/img.png "在这里输入图片标题")
 
 
 特点：
