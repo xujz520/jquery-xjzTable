@@ -2,7 +2,7 @@
     var config = {
         data: data,
         //ajax: {
-        //    url:'assets/test.json'
+        //    url: 'assets/test.json'
         //},
         defColumns: {
             textAlign: 'center'

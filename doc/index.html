@@ -142,6 +142,10 @@
             </pre>
             <p>截图：</p>
             <img src="assets/img/test1.png" class="img" />
+            <br />
+            <br />
+            <p>数据为空的情况:</p>
+            <img src="assets/img/td_empty.png" class="img" />
         </div>
         
         <br />
@@ -839,7 +843,7 @@
                         <br />
                         <p>jquery-xjzTable-all.min.css文件提供了两种风格的分页</p>
                         <p>&nbsp;&nbsp;&nbsp;&nbsp;'pagination pagination-sm': bootstrap风格</p>
-                        <p>&nbsp;&nbsp;&nbsp;&nbsp;'paging-transition': css3过渡效果IE9+</p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;'paging-transition': css3过渡效果IE10+</p>
                         <br />
                         <p>如要修改请参考源码</p>
                     </td>
@@ -854,7 +858,7 @@
 
             <div class="">
                 <ul style=" vertical-align: middle;" class="paging-transition"><li class="prev"><a href="javacript:;">上一页</a></li><li class="page"><a href="javacript:;">1</a></li><li class="more"><a href="javacript:;">...</a></li><li class="page"><a href="javacript:;">15</a></li><li class="page"><a href="javacript:;">16</a></li><li class="page"><a href="javacript:;">17</a></li><li class="page"><a href="javacript:;">18</a></li><li class="page"><a href="javacript:;">19</a></li><li class="active page"><a href="javacript:;">20</a></li><li class="page"><a href="javacript:;">21</a></li><li class="page"><a href="javacript:;">22</a></li><li class="page"><a href="javacript:;">23</a></li><li class="page"><a href="javacript:;">24</a></li><li class="page"><a href="javacript:;">25</a></li><li class="more"><a href="javacript:;">...</a></li><li class="page"><a href="javacript:;">30</a></li><li class="next"><a href="javacript:;">下一页</a></li></ul>
-                <span>&nbsp;&nbsp;(pagingClass: 'paging-transition' //css3过渡效果IE9+)</span>
+                <span>&nbsp;&nbsp;(pagingClass: 'paging-transition' //css3过渡效果IE10+)</span>
             </div>
 
             <br />
@@ -1194,6 +1198,7 @@
                 dom: "T<'pull-left'I><'pull-left'L><'pull-right'P>",
                 evenClass: 'even',
                 oddClass: 'odd',
+                td_emptyClass: 'td_empty',  //表格数据为空时, 单元格css类
                 xjzTooltipWrapClass: 'xjzTooltip',
                 xjzTableWrapClass: 'xjzTable-container clearfix',
                 masklayer: {
@@ -1218,7 +1223,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td rowspan="13">
+                        <td rowspan="14">
                             表格
                         </td>
                         <td>
@@ -1334,12 +1339,12 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <span style="color: rgb(0, 176, 240);">danger</span>
-                        </td>
-                        <td>
-                            <span style="color: rgb(0, 176, 240);">给单元格或行添加 &quot;错误&quot; 的样式(红色)</span>
-                        </td>
+                        <td><span style="color: rgb(0, 176, 240);">danger</span></td>
+                        <td><span style="color: rgb(0, 176, 240);">给单元格或行添加 &quot;错误&quot; 的样式(红色)</span></td>
+                    </tr>
+                    <tr>
+                        <td>td_empty</td>
+                        <td>表格数据为空时, 单元格css类</td>
                     </tr>
                     <tr>
                         <td rowspan="2">
