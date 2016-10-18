@@ -1,9 +1,6 @@
 #jquery-xjzTable
 一个功能强大且简单易用的表格插件.
 
-![输入图片说明](https://xujunzhou.github.io/jquery-xjzTable/doc/assets/img/img.png "在这里输入图片标题")
-
-
 特点：
 	支持分页、分页信息、分页大小
 	支持ajax数据源、本地数据源
