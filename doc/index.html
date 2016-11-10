@@ -22,7 +22,7 @@
 </head>
 <body>
     <div class="container">
-        <h3 class="text-center">jquery-xjzTable <span style="font-weight:normal; font-size:smaller;">v0.1.5</span></h3>
+        <h3 class="text-center">jquery-xjzTable <span style="font-weight:normal; font-size:smaller;">v0.1.6</span></h3>
 
         <h4>一、简介</h4>
         <div class="padding-left">
@@ -999,7 +999,7 @@
                 <tr>
                     <td>rowCallback</td>
                     <td>
-                        <p>行创建完成的回调函数, td已经插入</p>
+                        <p>行创建完成的回调函数, td已经插入. 在程序内部当行创建完成会自动将该行的原始数据保存到行中, 取数据: $("tbody tr:first").data("rowData")</p>
                         <pre class="brush:js;quick-code:false;">
                             rowCallback(rowData, rowIndex, options)
                             //this指向$td
@@ -1688,6 +1688,12 @@
                     <td>Number</td>
                     <td>获取当前页记录数</td>
                     <td>$(&quot;table&quot;).data(&quot;xjzTable&quot;).getCurrentCount();</td>
+                </tr>
+                <tr>
+                    <td>destroy</td>
+                    <td>undefined</td>
+                    <td>销毁该xjzTable实例, 还原表格为初始化之前的状态</td>
+                    <td>$(&quot;table&quot;).data(&quot;xjzTable&quot;).destroy();</td>
                 </tr>
             </table>
         </div>

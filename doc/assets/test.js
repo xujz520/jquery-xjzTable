@@ -24,7 +24,7 @@
             {
                 title: '年龄',
                 field: 'age',
-                sort: 'asc'
+                sort: true
             },
             {
                 title: '学分',
