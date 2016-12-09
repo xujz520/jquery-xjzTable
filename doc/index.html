@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="renderer" content="webkit">
     <title>jquery-xjzTable</title>
     
     <link href="../dist/jquery-xjzTable-all.min.css" rel="stylesheet" />
@@ -22,7 +22,7 @@
 </head>
 <body>
     <div class="container">
-        <h3 class="text-center">jquery-xjzTable <span style="font-weight:normal; font-size:smaller;">v0.1.7</span></h3>
+        <h3 class="text-center">jquery-xjzTable <span style="font-weight:normal; font-size:smaller;">v0.1.8</span></h3>
 
         <h4>一、简介</h4>
         <div class="padding-left">
@@ -1134,8 +1134,9 @@
 
             <br />
             <h4>11. 所有配置项</h4>
+            说明: 以下所有默认配置项均可通过 $.fn.xjzTable.options 统一修改, 作用于修改后再初始化的表格.
             <pre class="brush:js;quick-code:false;">
-            {
+            $.fn.xjzTable.options = {
                 data: null,
                 dataFilter: null,
                 ajax: {
@@ -1205,7 +1206,7 @@
                     containerMasklayerClass: 'xjzTable-container-masklayer',
                     tableMasklayerClass: 'xjzTable-table-masklayer'
                 }
-            }
+            };
         </pre>
 
             <br />
