@@ -21,3 +21,6 @@
 	兼容IE8
 	多语言支持
 	...
+
+版本说明:
+	v0.2.0 修改css类.table-fixed-hidden > tbody > tr > td { white-space:nowrap!important; } 2017-05-16
