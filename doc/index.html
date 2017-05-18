@@ -22,7 +22,7 @@
 </head>
 <body>
     <div class="container">
-        <h3 class="text-center">jquery-xjzTable <span style="font-weight:normal; font-size:smaller;">v0.2.0</span></h3>
+        <h3 class="text-center">jquery-xjzTable <span style="font-weight:normal; font-size:smaller;">v0.2.1</span></h3>
 
         <h4>一、简介</h4>
         <div class="padding-left">
@@ -53,7 +53,8 @@
             <div class="padding-left">
                 <p>徐俊洲</p>
                 <p>QQ: 765550360(清晨的阳光)</p>
-                <p>2016-10-01</p>
+                <p>创建日期: 2016-10-01</p>
+                <p>上次更新日期: 2017-05-18</p>
                 <div>
                     <img src="assets/img/xjz.png" class="xjz" />
                     <p style="color:green;text-shadow: 0px 0px 1px;">如果您觉得好用, 并且想获取源码, 就请支付宝打赏我吧. 之后765550360@qq.com通知我, 我会第一时间发送源码!</p>
@@ -574,7 +575,7 @@
                     <td>null</td>
                     <td>
                         <p>发送之前要执行的函数, 一般用于修改发送的参数</p>
-                        <p>sendCallback(options) //options为表格配置对象</p>
+                        <p>sendCallback(options) <br>//this指向$table<br>//options为表格配置对象</p>
                     </td>
                     <td>
                         <pre class="brush:js;quick-code:false;">
@@ -595,6 +596,7 @@
                         <p>请用该方法代替$.ajax.success方法</p>
                         <br />
                         <p>successCallback(data, options) </p>
+                        <p>//this指向$table</p>
                         <p>//data为服务器返回的数据(由json转化的js对象)</p>
                         <p>//options为表格配置对象</p>
                     </td>

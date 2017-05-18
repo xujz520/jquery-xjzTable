@@ -7,20 +7,21 @@
 
 
 特点：
-	支持分页、分页信息、分页大小
-	支持ajax数据源、本地数据源
-	支持排序
-	单元格鼠标悬停浮动tooltip
-	自定义单元格内容渲染
-	精准控制dom生成
-	回调函数
-	强大的表格刷新方法
-	bootstrap样式
-	支持自定义css样式类
-	配置简单
-	兼容IE8
-	多语言支持
-	...
+<br>支持分页、分页信息、分页大小
+<br>支持ajax数据源、本地数据源
+<br>支持排序
+<br>单元格鼠标悬停浮动tooltip
+<br>自定义单元格内容渲染
+<br>精准控制dom生成
+<br>回调函数
+<br>强大的表格刷新方法
+<br>bootstrap样式
+<br>支持自定义css样式类
+<br>配置简单
+<br>兼容IE8
+<br>多语言支持
+<br>...
 
 版本说明:
-	v0.2.0 修改css类.table-fixed-hidden > tbody > tr > td { white-space:nowrap!important; } 2017-05-16
+<br>v0.2.1 | 增加sendCallback 和 successCallback执行作用域(this)指向$table(jquery对象) | 2017-05-18
+<br>v0.2.0 | 修改css类.table-fixed-hidden > tbody > tr > td { white-space:nowrap!important; } | 2017-05-16
